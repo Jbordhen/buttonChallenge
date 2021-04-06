@@ -62,7 +62,9 @@ const Button = styled(Buttons)`
             : theme.variant.default}
     ${({ hover, focus, variant, color }) =>
         (hover || focus) &&
-        (variant ? theme.hoverFocus[variant] : theme.hoverFocus[color])}
+        (variant === ('outline' || 'text')
+            ? theme.hoverFocus[variant]
+            : theme.hoverFocus[color])}
         ${({ disabledShadow }) => disabledShadow && theme.disabledShadow}
         ${({ disabled }) => disabled && theme.disabled}
 `
