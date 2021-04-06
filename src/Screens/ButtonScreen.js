@@ -11,16 +11,47 @@ const Wrapper = styled.div`
 const Row = styled.div`
     display: flex;
     flex-direction: row;
-    margin-top: 2%;
-    margin-bottom: 2%;
+    justify-content: space-between;
+`
+const P = styled.p`
+    font-size: 12px;
 `
 
-const Button = styled.button`
+const Buttons = ({ children, className, startIcon, endIcon }) => (
+    <button className={className}>
+        {startIcon && (
+            <span
+                className='material-icons md-18'
+                css={`
+                    font-size: inherit;
+                    vertical-align: middle;
+                    margin-right: 5%;
+                `}>
+                {startIcon}
+            </span>
+        )}
+        {children}
+        {endIcon && (
+            <span
+                className='material-icons md-18'
+                css={`
+                    font-size: inherit;
+                    vertical-align: middle;
+                    margin-left: 5%;
+                `}>
+                {endIcon}
+            </span>
+        )}
+    </button>
+)
+
+const Button = styled(Buttons)`
+    display: flex;
+    flex-direction: row;
     background-color: #e0e0e0;
     border: none;
     border-radius: 6px;
-    box-shadow: rgba(51, 51, 51, 0.2);
-    margin-right: 15%;
+    box-shadow: 2px 2px 2px 1px rgba(51, 51, 51, 0.2);
     ${({ color }) => theme.color[color]};
     ${({ size }) => size && theme.size[size]};
     ${({ variant }) =>
@@ -52,6 +83,7 @@ const theme = {
         color: #3D5AFE;
         background-color: inherit;
         padding: 0;
+        box-shadow: none;
         `
     },
     hoverFocus: {
@@ -87,6 +119,7 @@ const theme = {
     disabledShadow: `
     background: #3D5AFE;
     border-radius: 6px;
+    box-shadow: none;
     color: white;
     `,
     disabled: `
@@ -124,8 +157,16 @@ const ButtonScreen = () => {
         <Wrapper>
             <Heading>Buttons</Heading>
             <Row>
+                <P>{'<Button>Default</Button>'}</P>
+                <P>{'<Button hover>Default</Button>'}</P>
+            </Row>
+            <Row>
                 <Button>Default</Button>
                 <Button hover>Default</Button>
+            </Row>
+            <Row>
+                <P>{`<Button variant='outline'>Default</Button>`}</P>
+                <P>{`<Button variant='outline' hover>Default</Button>`}</P>
             </Row>
             <Row>
                 <Button variant='outline'>Default</Button>
@@ -134,13 +175,24 @@ const ButtonScreen = () => {
                 </Button>
             </Row>
             <Row>
+                <P>{`<Button variant='text'>Default</Button>`}</P>
+                <P>{`<Button variant='text' hover>Default</Button>`}</P>
+            </Row>
+            <Row>
                 <Button variant='text'>Default</Button>
                 <Button variant='text' hover>
                     Default
                 </Button>
             </Row>
             <Row>
+                <P>{`<Button disabledShadow>Default</Button>`}</P>
+            </Row>
+            <Row>
                 <Button disabledShadow>Default</Button>
+            </Row>
+            <Row>
+                <P>{`<Button disabled>Default</Button>`}</P>
+                <P>{`<Button variant='text' disabled>Default</Button>`}</P>
             </Row>
             <Row>
                 <Button disabled>Disabled</Button>
@@ -149,15 +201,40 @@ const ButtonScreen = () => {
                 </Button>
             </Row>
             <Row>
+                <P>{`<Button startIcon='local_grocery_store'>Default</Button>`}</P>
+                <P>{`<Button endIcon='local_grocery_store'>Default</Button>`}</P>
+            </Row>
+            <Row>
+                <Button startIcon='local_grocery_store'>Default</Button>
+                <Button endIcon='local_grocery_store'>Default</Button>
+            </Row>
+            <Row>
+                <P>{`<Button size='sm'>Default</Button>`}</P>
+                <P>{`<Button size='md'>Default</Button>`}</P>
+                <P>{`<Button size='lg'>Default</Button>`}</P>
+            </Row>
+            <Row>
                 <Button size='sm'>Default</Button>
                 <Button size='md'>Default</Button>
                 <Button size='lg'>Default</Button>
+            </Row>
+            <Row>
+                <P>{`<Button color='default'>Default</Button>`}</P>
+                <P>{`<Button color='primary'>Default</Button>`}</P>
+                <P>{`<Button color='secondary'>Default</Button>`}</P>
+                <P>{`<Button color='danger'>Default</Button>`}</P>
             </Row>
             <Row>
                 <Button color='default'>Default</Button>
                 <Button color='primary'>Default</Button>
                 <Button color='secondary'>Default</Button>
                 <Button color='danger'>Default</Button>
+            </Row>
+            <Row>
+                <P>{`<Button color='default' focus>Default</Button>`}</P>
+                <P>{`<Button color='primary' focus>Default</Button>`}</P>
+                <P>{`<Button color='secondary' focus>Default</Button>`}</P>
+                <P>{`<Button color='danger' focus>Default</Button>`}</P>
             </Row>
             <Row>
                 <Button color='default' focus>
